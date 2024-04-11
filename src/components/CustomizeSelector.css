@@ -1,0 +1,48 @@
+.selector-container {
+    white-space: nowrap;
+    margin-bottom: 1em;
+}
+
+.selector-container>div {
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    align-content: flex-end;
+}
+
+.selector-container>div {
+    padding-left: 0.5em;
+}
+
+.selector-container>div:last-child {
+    padding-right: 0.5em;
+}
+
+label {
+    margin: 0.5em 0;
+}
+
+img {
+    position: relative;
+    display: inline-block;
+    vertical-align: text-bottom;
+    min-height: 100px;
+}
+
+img::before {
+    content: '预览不存在';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 100px;
+    line-height: 100px;
+    background-color: #000;
+    color: currentColor;
+    text-align: center;
+    border-radius: 2px;
+    display: block;
+    width: 100%;
+    overflow: hidden;
+}
