@@ -299,4 +299,4 @@ export class Api {
     }
 }
 
-export const api = new Api('http://localhost:25730/api');
+export const api = new Api('/api');
