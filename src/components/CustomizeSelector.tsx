@@ -34,8 +34,8 @@ export default function ({ type, values, text, signal, other }: { type: number, 
         <div class="selector-container">
             <div>
                 <img src={'images/' + s() + '.png'} />
-                <label for={id}>{text}</label>
-                <select id={id} value={s()} onchange={(e) => setSelected(e.target.value)}>
+                <label class="my-2" for={id}>{text}</label>
+                <select class="form-select" id={id} value={s()} onchange={(e) => setSelected(e.target.value)}>
                     {values.map(v => (
                         <option value={v}>{v}</option>
                     ))}

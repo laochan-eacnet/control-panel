@@ -1,0 +1,13 @@
+.customize-container {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    align-items: end !important;
+}
+
+.customize-container>div {
+    max-width: 120px;
+}
+
+.customize-container.column-5 {
+    grid-template-columns: auto auto auto auto auto;
+}

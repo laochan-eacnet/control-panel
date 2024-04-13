@@ -8,6 +8,12 @@ export interface PlayerCustomizeSetting {
         item_id: string,
         item_category: number,
     }[];
+    items_count: {
+        bit: number;
+        ldisc: number;
+        infinitas_ticket: number;
+        infinitas_ticket_free: number;
+    };
 }
 
 export interface Pdata {
@@ -268,13 +274,31 @@ export interface SPPlayTime {
     total: number;
 }
 
+export interface RivalInfo {
+    enabled: boolean;
+    spRivals: Player[];
+    dpRivals: Player[];
+}
+
+export interface RivalPatch {
+    enabled: boolean,
+};
+
+export interface RivalPostOrDelete {
+    infinitas_id: string;
+    type: number;
+};
+
+export interface WithError {
+    error?: string;
+}
 
 export class Api {
     constructor(
         private readonly apiBase: string,
     ) { }
 
-    private async fetch(url: string, method: 'GET' | 'POST' | 'PUT' = 'GET', body?: BodyInit) {
+    private async fetch(url: string, method: 'GET' | 'POST' | 'PATCH' | 'PUT' | 'DELETE' = 'GET', body?: BodyInit) {
         const result = await fetch(this.apiBase + url, {
             method,
             body,
@@ -297,6 +321,33 @@ export class Api {
     public putCustomizeSetting(token: string, customize: PlayerCustomizeSetting) {
         return this.fetch('/p2d/customize/' + token, 'PUT', JSON.stringify(customize));
     }
+
+    public getRecentPlaylog(token: string) {
+        return this.fetch('/p2d/playlog/' + token);
+    }
+
+    public getRivalInfo(token: string): Promise<RivalInfo> {
+        return this.fetch('/p2d/rival/' + token);
+    }
+
+    public changeRivalStatus(token: string, enabled: boolean) {
+        return this.fetch('/p2d/rival/' + token, 'PATCH', JSON.stringify({
+            enabled
+        }));
+    }
+
+    public addRival(token: string, infinitas_id: string, type: number): Promise<WithError> {
+        return this.fetch('/p2d/rival/' + token, 'POST', JSON.stringify({
+            infinitas_id, type
+        }));
+    }
+
+    public deleteRival(token: string, infinitas_id: string, type: number): Promise<WithError> {
+        return this.fetch('/p2d/rival/' + token, 'DELETE', JSON.stringify({
+            infinitas_id, type
+        }));
+    }
 }
 
-export const api = new Api('/api');
+// export const api = new Api('/api');
+export const api = new Api('http://localhost:25730/api');
