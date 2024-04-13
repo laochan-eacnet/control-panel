@@ -1,8 +1,7 @@
-import { Show, Signal, createSignal, onMount } from 'solid-js'
+import { Show, createSignal, onMount } from 'solid-js'
 
 import './App.css'
-import CustomizeSelector from './components/CustomizeSelector'
-import { bgms, customize, customizeText, danNames, otherCustomize, otherCustomizeText } from './data'
+import { danNames } from './data'
 import { Pdata, PlayerCustomizeSetting, RivalInfo, api } from './api';
 import Customize from './Customize';
 
