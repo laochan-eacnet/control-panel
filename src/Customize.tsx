@@ -1,6 +1,6 @@
 import { Signal } from "solid-js";
 import CustomizeSelector from "./components/CustomizeSelector"
-import { bgms, customize, customizeText, otherCustomize, otherCustomizeText } from './data'
+import { bgms, customize, customizeText, otherCustomize, otherCustomizeText, results } from './data'
 import { PlayerCustomizeSetting } from "./api";
 
 import './Customize.css';
@@ -50,6 +50,9 @@ export default function ({ sCustomizeSetting, saveCustomize }: {
                     <hr />
                     <div class="mb-3">
                         <CustomizeSelector type={10} values={bgms} text="背景音乐" other={false} signal={[customizeSetting, setCustomizeSetting] as Signal<PlayerCustomizeSetting>}></CustomizeSelector>
+                    </div>
+                    <div class="mb-3">
+                        <CustomizeSelector type={12} values={results} text="结算背景图" other={false} signal={[customizeSetting, setCustomizeSetting] as Signal<PlayerCustomizeSetting>}></CustomizeSelector>
                     </div>
                     <hr />
                     <h5 class="card-title mb-3">物品数量</h5>
